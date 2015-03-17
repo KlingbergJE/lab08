@@ -68,7 +68,7 @@ bool Maze::traverse(int row, int col)
          //DO THIS
          //make recursive calls that consider all four orthogonal directions
          //basically, we will try all possible paths until a solution is found
-		traverse(row + 1, col + 1) == TRIED;
+		traverse(row, col) = traverse(row + 1, col + 1) == TRIED;
 		return done;
          //IMPORTANT!!
          //don't use row++ or column++ use row + 1 or col + 1, etc.
