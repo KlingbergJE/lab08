@@ -6,6 +6,9 @@
 #include <iostream>
 using namespace std;
 
+int height = maze->getNumRows();
+int width = maze->getNumCols();
+
 Maze::Maze(Matrix* mz)
 {
    maze = mz;
@@ -32,20 +35,20 @@ bool Maze::solve()
    bool done = traverse(1, 1);
    return done;
 }
-
+    
 bool Maze::traverse(int row, int col)
 {
    bool done = false; //assume we are not done unless proven otherwise
 
    //DO THIS
    //test that the current grid location is a space (i.e. not a wall or already tried)
-   if (traverse(row, col) == SPACE )
+   if (mz->getElement(row, col) == SPACE)
    {
 		
       //DO THIS
       //now it has been tried so mark it as tried
-	  traverse(row, col) == TRIED;
-	  traverse(row, col) = traverse(row + 1, col +1);
+	  mz->setElement(row, col) = TRIED;
+	  //getElement(row, col) = getElement(row + 1, col +1);
 
 
 
@@ -55,8 +58,7 @@ bool Maze::traverse(int row, int col)
 
       //DO THIS
       //check to see if we have arrived at the bottom right corner of the maze
-      int height = maze->getNumRows();
-      int width = maze->getNumCols();
+
 
       if (row == height && col == width )
       {
@@ -68,8 +70,7 @@ bool Maze::traverse(int row, int col)
          //DO THIS
          //make recursive calls that consider all four orthogonal directions
          //basically, we will try all possible paths until a solution is found
-		traverse(row, col) = traverse(row + 1, col + 1) == TRIED;
-		return done;
+		
          //IMPORTANT!!
          //don't use row++ or column++ use row + 1 or col + 1, etc.
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
