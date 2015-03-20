@@ -50,18 +50,20 @@ bool Maze::traverse(int row, int col)
 
 
 
-      Sleep(75);  //slow down the maze traversal
+      Sleep(15);  //slow down the maze traversal
       gui->update();
 
       //DO THIS
       //check to see if we have arrived at the bottom right corner of the maze
       int height = maze->getNumRows();
       int width = maze->getNumCols();
-		double temp;
+	  double temp;
+		
 
       if (row == height && col == width )
       {
          done = true;
+		 cout << "We finished!\n";
       }
       else
       {
@@ -76,18 +78,18 @@ bool Maze::traverse(int row, int col)
 			}	
 		
 		temp = maze->getElement(row, col+1);// this will check the space to the right of current space
-		if( temp == SPACE )
+		if( temp == SPACE && done != true )
 			{
 				done = traverse(row, col+1);
 			}
 		
 		temp = maze->getElement(row, col-1);// this will check the space to the left of current space
-		if( temp == SPACE )
+		if( temp == SPACE && done != true )
 			{
 				done = traverse(row, col-1);
 			}
 		temp = maze->getElement(row-1, col);//this will check the space above the current space
-			if( temp == SPACE )
+			if( temp == SPACE && done != true )
 			{
 				done = traverse(row-1,col);
 			}
@@ -97,14 +99,14 @@ bool Maze::traverse(int row, int col)
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
 		
       }
-		return done;
+
       //if we are done, on the way back recursively we must mark the path that we took as the solution path
-      if (done = true)
+      if (done == true)
       {
          //DO THIS
          //mark the path taken as the solution path
 		
-		maze->setElement(row, col,4);
+		maze->setElement(row, col,PATH);
 
          gui->update();
       }
@@ -112,10 +114,10 @@ bool Maze::traverse(int row, int col)
       else
       {
          //DO THIS
-		maze->setElement(row,col,3);
+		maze->setElement(row,col,BACKTRACK);
 
 
-         Sleep(75);
+         Sleep(15);
          gui->update();
       }
    }
