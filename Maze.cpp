@@ -69,24 +69,24 @@ bool Maze::traverse(int row, int col)
          //DO THIS
          //make recursive calls that consider all four orthogonal directions
          //basically, we will try all possible paths until a solution is found
-		 temp = maze->getElement(row+1, col);
+		 temp = maze->getElement(row+1, col);// this will check the space to below current space
 			if( temp == SPACE )
 			{
 				done = traverse(row+1, col);
 			}	
 		
-		temp = maze->getElement(row, col+1);
+		temp = maze->getElement(row, col+1);// this will check the space to the right of current space
 		if( temp == SPACE )
 			{
 				done = traverse(row, col+1);
 			}
 		
-		temp = maze->getElement(row, col-1);
+		temp = maze->getElement(row, col-1);// this will check the space to the left of current space
 		if( temp == SPACE )
 			{
 				done = traverse(row, col-1);
 			}
-		temp = maze->getElement(row-1, col);
+		temp = maze->getElement(row-1, col);//this will check the space above the current space
 			if( temp == SPACE )
 			{
 				done = traverse(row-1,col);
